@@ -1,0 +1,31 @@
+name: tofu-jobs-visitor
+services:
+  database:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: visitor
+      POSTGRES_PASSWORD: disposable-local-only
+      POSTGRES_DB: jobs_visitor
+    volumes:
+      - visitor-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U visitor -d jobs_visitor]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  api:
+    build: .
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - '127.0.0.1:5215:8080'
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      VisitorDemo__Enabled: 'true'
+      VisitorDemo__SigningKey: ${VISITOR_DEMO_SIGNING_KEY:?Set a random disposable signing key}
+      ConnectionStrings__DefaultConnectionString: Host=database;Database=jobs_visitor;Username=visitor;Password=disposable-local-only
+      Cors__Origins__0: http://127.0.0.1:5216
+      AllowedHosts: localhost;127.0.0.1;api
+volumes:
+  visitor-data:

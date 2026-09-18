@@ -1,0 +1,23 @@
+namespace Tofu_Jobs_Server.Data;
+
+public enum ActivityCategories
+{
+    APPLY,
+    FOLLOW_UP,
+    COVER_LETTER,
+    RESUME,
+    REACH_OUT,
+    INTERVIEW_PREP,
+    PHONE_SCREEN,
+    PHONE_INTERVIEW,
+    ON_SITE_INTERVIEW,
+    OFFER_RECEIVED,
+    ACCEPT_OFFER,
+    DECLINE_OFFER,
+    REJECTED,
+    SEND_THANK_YOU,
+    NEGOTIATE,
+    TAKE_HOME_ASSIGNMENT,
+    CODING_EXAM,
+    NETWORKING_EVENT
+}
