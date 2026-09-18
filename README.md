@@ -1,5 +1,7 @@
 # Tofu Jobs API
 
+[Open the hosted demo](https://tofu-jobs-demo.vercel.app) · [Frontend source](https://github.com/brennanbutler01/tofu-jobs) · [API source](https://github.com/brennanbutler01/tofu-jobs-api)
+
 C#/.NET 10 and PostgreSQL backend for the Tofu Jobs organizer. The six record types are companies, application lists, jobs, interviews, activities and cover-letter links. Every route checks the authenticated owner, including related record ownership.
 
 ## Disposable local demo
